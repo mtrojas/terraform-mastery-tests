@@ -8,6 +8,7 @@ import (
 	"time"
 
 	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
+	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
@@ -21,6 +22,7 @@ func TestHelloWorldAppExample(t *testing.T) {
 				"address": "mock-value-for-test",
 				"port":    3306,
 			},
+			"environment": fmt.Sprintf("test-%s", random.UniqueId()),
 		},
 	}
 
