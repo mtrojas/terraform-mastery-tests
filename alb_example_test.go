@@ -7,13 +7,19 @@ import (
 	"time"
 
 	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
+	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
 func TestAlbExample(t *testing.T) {
+	t.Parallel()
+
 	opts := &terraform.Options{
 		// Path pointing to the ALB Example directory
 		TerraformDir: "/Users/mtrojas/Documents/terraform-mastery/modules/examples/alb",
+		Vars: map[string]interface{}{
+			"alb_name": fmt.Sprintf("test-%s", random.UniqueId()),
+		},
 	}
 
 	// Clean up everything at the end of the test
